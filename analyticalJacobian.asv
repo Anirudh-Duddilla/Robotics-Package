@@ -1,0 +1,21 @@
+function Ja= analyticalJacobian(u)
+
+global R n_links
+q=u(1:n_links,1);
+gJ=R.jacob0(q');
+
+if n_links==1
+    J=gJ(1,:);
+elseif n_links ==2 
+    J=[gJ(1,:);gJ(6,:)];
+elseif n_links ==3
+    J=[gJ(1,:);gJ(2,:);gJ(6,:)];
+elseif n_links ==4
+    J=[gJ(1,:);gJ(2,:);gJ(3,:);gJ(6,:)];
+elseif n_links == 5
+    J=[gJ(1,:);gJ(2,:);gJ(3,:); gJ(4,:);gJ(6,:)];
+else
+    J=gJ;
+end
+
+Ja=J;
